@@ -30,7 +30,10 @@ class Owner:
         return [pet for pet in Pet.all if pet.owner == self]
     
     def add_pet(self, new_pet):
-        new_pet.owner = self
+        if isinstance(new_pet, Pet):
+            new_pet.owner = self
+        else:
+            raise Exception("new_pet must be instance.")
 
     def get_sorted_pets(self):
         pets = self.pets()
